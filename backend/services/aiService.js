@@ -312,7 +312,9 @@ Respond strictly in JSON format matching this schema:
         // Cap history to avoid context overflow in rapid sessions
         const chatInstance = model.startChat({
           history: formattedHistory.slice(-10),
-          systemInstruction: "You are VenturePilot AI, a wise, encouraging, and highly analytical AI Co-Founder and business advisor. Your goal is to guide entrepreneurs on business models, startup evaluation, financial forecasting, and cost optimization. Keep answers readable, using bullet points and numbered lists where appropriate."
+          systemInstruction: {
+            parts: [{ text: "You are Scale, a wise, encouraging, and highly analytical AI Co-Founder and business advisor. Your goal is to guide entrepreneurs on business models, startup evaluation, financial forecasting, and cost optimization. Keep answers readable, using bullet points and numbered lists where appropriate." }]
+          }
         });
         const result = await chatInstance.sendMessage(message);
         return result.response.text();
