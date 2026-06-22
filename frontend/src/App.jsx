@@ -241,7 +241,7 @@ export default function App() {
   }
 
   return (
-    <Router>
+    <Router basename="/scale">
       <MainLayoutWrapper 
         isAuthenticated={isAuthenticated} 
         admin={admin} 
