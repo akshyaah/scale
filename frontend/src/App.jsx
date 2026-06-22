@@ -19,7 +19,7 @@ import AdminTrendManage from './pages/AdminTrendManage';
 import AdminFundingManage from './pages/AdminFundingManage';
 
 // Components
-import CoFounderChat from './components/CoFounderChat';
+
 
 // Protected Route Wrapper
 function ProtectedRoute({ children, isAuthenticated }) {
@@ -45,7 +45,7 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout }) {
             <div className="w-9 h-9 rounded-lg bg-gradient-brand flex items-center justify-center text-white shadow-md rotate-45">
               <Rocket className="w-5 h-5" />
             </div>
-            <span className="font-display">Scale <span className="text-brand-400">AI</span></span>
+            <span className="font-display">Scale</span>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -117,18 +117,18 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout }) {
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
               <div className="w-6 h-6 rounded bg-brand-500 flex items-center justify-center text-white text-[10px] rotate-45"><Rocket className="w-3.5 h-3.5" /></div>
-              <span>Scale AI</span>
+              <span>Scale</span>
             </div>
             <div className="flex items-center gap-6 text-slate-400 text-xs font-medium">
-              <span>&copy; {new Date().getFullYear()} Scale AI. All rights reserved.</span>
+              <span>&copy; {new Date().getFullYear()} Scale. All rights reserved.</span>
               <Link to="/admin/login" className="hover:text-slate-200 transition-colors">Admin Portal</Link>
             </div>
           </div>
         </footer>
       )}
 
-      {/* Floating chatbot on public pages */}
-      {!isAdminRoute && <CoFounderChat />}
+      {/* Floating chatbot removed */}
+      
     </div>
   );
 }
@@ -199,7 +199,7 @@ export default function App() {
         {mobileMenuOpen && (
           <div className="fixed inset-0 z-[100] bg-dark-950/95 flex flex-col p-6 animate-fade-in lg:hidden">
             <div className="flex items-center justify-between mb-8">
-              <span className="font-display font-bold text-lg">Scale<span className="text-brand-400"> AI</span></span>
+              <span className="font-display font-bold text-lg">Scale</span>
               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-400 hover:text-white">
                 <X className="w-6 h-6" />
               </button>

@@ -81,7 +81,7 @@ export default function Home() {
           {/* Left Text content */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/25 text-brand-300 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" /> Scale AI advisory platform
+              <Sparkles className="w-3.5 h-3.5" /> Scale advisory platform
             </div>
             
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
