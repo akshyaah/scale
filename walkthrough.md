@@ -1,6 +1,6 @@
-# Walkthrough: VenturePilot AI
+# Walkthrough: Scale
 
-VenturePilot AI is a modern, premium AI-powered business and financial decision-support advisor. It is tailored for aspiring entrepreneurs, startup teams, and small business owners to evaluate opportunities, run operational diagnostics, forecast monthly runways, and optimize budgets.
+Scale is a modern, premium business and financial decision-support advisor. It is tailored for aspiring entrepreneurs, startup teams, and small business owners to evaluate opportunities, run operational diagnostics, forecast monthly runways, and optimize budgets.
 
 ## Features Accomplished
 
@@ -16,15 +16,12 @@ VenturePilot AI is a modern, premium AI-powered business and financial decision-
 - **Resource Optimizer**: Custom checklist to allocate monthly budgets, mapping departments on a Pie chart (Recharts) alongside recruiting schedules.
 - **Market Insights**: Renders sectoral growth bars (Recharts) and detailed schemes directory.
 
-### 3. AI Co-Founder Chatbot
-- Floating chat widget that handles business queries, answers questions regarding startup capital budgets, and remembers session history.
-
-### 4. Admin Portal CRUD
+### 3. Admin Portal CRUD
 - Split-screen admin login credentials: `admin@venturepilot.ai` / `admin123`.
 - Admin dashboard: metrics widgets (Opportunities, Trends, Funding Schemes, Reports count) and activity summaries.
 - Independent tables displaying CRUD operations (Create, Edit, Delete, Search, and Status Toggles) for Opportunities, Market Trends, and Funding sources using overlay modals.
 
-### 5. Dual Database Mode
+### 4. Dual Database Mode
 - Seamless fallbacks: uses MongoDB (Mongoose) if a `MONGO_URI` is present in [.env](file:///c:/bootcamp/backend/.env), otherwise falls back to local database [db.json](file:///c:/bootcamp/backend/db.json) dynamically.
 
 ---
@@ -82,9 +79,7 @@ dist/assets/index-B6ZXTb8j.js   791.63 kB
 <!-- slide -->
 ![5. Resource Optimizer](C:/Users/AKSHAYA%20S%20ANILKUMAR/.gemini/antigravity-ide/brain/8e1a58b0-6100-49d7-b3a5-b589d1fec049/resource_optimizer_1781780844340.png)
 <!-- slide -->
-![6. AI Co-Founder Chatbot](C:/Users/AKSHAYA%20S%20ANILKUMAR/.gemini/antigravity-ide/brain/8e1a58b0-6100-49d7-b3a5-b589d1fec049/chatbot_after_send_1781781618254.png)
-<!-- slide -->
-![7. Admin Dashboard](C:/Users/AKSHAYA%20S%20ANILKUMAR/.gemini/antigravity-ide/brain/8e1a58b0-6100-49d7-b3a5-b589d1fec049/admin_dashboard_1781781810522.png)
+![6. Admin Dashboard](C:/Users/AKSHAYA%20S%20ANILKUMAR/.gemini/antigravity-ide/brain/8e1a58b0-6100-49d7-b3a5-b589d1fec049/admin_dashboard_1781781810522.png)
 ````
 
 ---
