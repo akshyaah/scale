@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..800;1,400..800&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap');
 
 @import "tailwindcss";
 
@@ -270,3 +270,91 @@
   color: #4A5568 !important;
 }
 
+/* ==========================================
+   Scale Bistro (Restaurant Theme) Overrides
+   ========================================== */
+.theme-restaurant {
+  --color-dark-950: #0C0A09; /* Warm obsidian dark */
+  --color-dark-900: #12100E; /* Main Background */
+  --color-dark-800: #1C1917; /* Card / Nav Background */
+  --color-dark-700: #292524; /* Borders */
+  
+  --color-brand-50: #fefaf6;
+  --color-brand-100: #faefe4;
+  --color-brand-200: #f5dfca;
+  --color-brand-300: #eecda8;
+  --color-brand-400: #D9A752; /* Luxury Gold Accent */
+  --color-brand-500: #8C1D2A; /* Crimson Red primary */
+  --color-brand-600: #A62434;
+  --color-brand-700: #C22D3E;
+  
+  --color-accent-500: #D9A752;
+  
+  background-color: #0C0A09 !important;
+  color: #F5F5F4 !important;
+  font-family: 'Inter', sans-serif !important;
+  background-image: none !important;
+}
+
+.theme-restaurant body {
+  background-color: #0C0A09 !important;
+  color: #F5F5F4 !important;
+}
+
+.theme-restaurant h1,
+.theme-restaurant h2,
+.theme-restaurant h3 {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700;
+  color: #F5F5F4 !important;
+  letter-spacing: -0.01em;
+}
+
+.theme-restaurant .glass {
+  background: rgba(12, 10, 9, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(217, 167, 82, 0.15) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.theme-restaurant .glass-card {
+  background: #1C1917 !important;
+  border: 1px solid rgba(217, 167, 82, 0.15) !important;
+  box-shadow: 0 8px 30px -10px rgba(0, 0, 0, 0.5) !important;
+  color: #F5F5F4 !important;
+}
+
+.theme-restaurant .glass-card:hover {
+  border: 1px solid rgba(217, 167, 82, 0.35) !important;
+  box-shadow: 0 16px 40px -5px rgba(0, 0, 0, 0.7) !important;
+  transform: translateY(-4px) !important;
+}
+
+.theme-restaurant .glass-input {
+  background: #12100E !important;
+  border: 1px solid rgba(217, 167, 82, 0.25) !important;
+  color: #F5F5F4 !important;
+}
+
+.theme-restaurant .glass-input:focus {
+  border-color: #D9A752 !important;
+  box-shadow: 0 0 0 2px rgba(217, 167, 82, 0.15) !important;
+}
+
+.theme-restaurant .bg-gradient-brand {
+  background: linear-gradient(135deg, #8C1D2A 0%, #D9A752 100%) !important;
+}
+
+.theme-restaurant .text-gradient-brand {
+  background: linear-gradient(135deg, #8C1D2A 0%, #D9A752 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.theme-restaurant .text-slate-350,
+.theme-restaurant .text-slate-300,
+.theme-restaurant .text-slate-400 {
+  color: #D8D2CB !important;
+}

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { 
   ArrowRight, BarChart3, ShieldCheck, Zap, Cpu, Sparkles, 
   TrendingUp, DollarSign, Compass, Maximize, Layers, Hammer, 
-  Building, Sliders, MapPin, CheckCircle, Quote
+  Building, Sliders, MapPin, CheckCircle, Quote, Utensils,
+  Wine, Users, Clock, Calendar, Check
 } from 'lucide-react';
 
 function RollingCounter({ target, suffix = '', duration = 1500 }) {
@@ -68,13 +69,13 @@ function BlueprintStudio() {
         <div>
           <span className="text-[10px] uppercase font-bold tracking-widest text-amber-800">Dynamic Sandbox</span>
           <h3 className="text-2xl font-extrabold text-zinc-900 mt-1">Spatial Planner</h3>
-          <p className="text-zinc-600 text-xs mt-1">Configure dimensions and core architectural parameters to compute material ratios and structure ratings.</p>
+          <p className="text-zinc-650 text-xs mt-1">Configure dimensions and core architectural parameters to compute material ratios and structure ratings.</p>
         </div>
 
         {/* Inputs */}
         <div className="space-y-4 text-xs font-semibold uppercase tracking-wider text-zinc-800">
           <div className="space-y-2">
-            <div className="flex justify-between text-zinc-700">
+            <div className="flex justify-between text-zinc-705">
               <span>Lot Width: {width}m</span>
               <span className="text-zinc-400 font-normal font-metrics">Max 45m</span>
             </div>
@@ -86,7 +87,7 @@ function BlueprintStudio() {
           </div>
 
           <div className="space-y-2">
-            <div className="flex justify-between text-zinc-700">
+            <div className="flex justify-between text-zinc-705">
               <span>Lot Length: {length}m</span>
               <span className="text-zinc-400 font-normal font-metrics">Max 60m</span>
             </div>
@@ -98,7 +99,7 @@ function BlueprintStudio() {
           </div>
 
           <div className="space-y-2">
-            <div className="flex justify-between text-zinc-700">
+            <div className="flex justify-between text-zinc-705">
               <span>Levels: {levels} {levels > 1 ? 'Stories' : 'Story'}</span>
             </div>
             <div className="flex gap-2 mt-1">
@@ -116,7 +117,7 @@ function BlueprintStudio() {
           </div>
 
           <div className="space-y-2">
-            <span className="text-zinc-700">Design Aesthetic</span>
+            <span className="text-zinc-705">Design Aesthetic</span>
             <div className="flex gap-2 mt-1">
               {[
                 { id: 'minimalist', label: 'Minimal Glass' },
@@ -139,19 +140,19 @@ function BlueprintStudio() {
         {/* Live calculated feedback */}
         <div className="grid grid-cols-2 gap-4 border-t border-zinc-200 pt-4">
           <div>
-            <p className="text-[10px] uppercase font-bold text-zinc-550">Total Footprint</p>
+            <p className="text-[10px] uppercase font-bold text-zinc-500">Total Footprint</p>
             <p className="font-metrics font-extrabold text-lg text-zinc-900">{floorArea} m²</p>
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-zinc-550">Simulated Build</p>
+            <p className="text-[10px] uppercase font-bold text-zinc-500">Simulated Build</p>
             <p className="font-metrics font-extrabold text-lg text-zinc-900">~{estimatedDays} Days</p>
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-zinc-550">Structural Safety</p>
+            <p className="text-[10px] uppercase font-bold text-zinc-500">Structural Safety</p>
             <p className="font-metrics font-extrabold text-lg text-emerald-800">{structuralIndex}%</p>
           </div>
           <div>
-            <p className="text-[10px] uppercase font-bold text-zinc-550">Thermal Efficiency</p>
+            <p className="text-[10px] uppercase font-bold text-zinc-500">Thermal Efficiency</p>
             <p className="font-metrics font-extrabold text-lg text-amber-800">{thermalIndex}%</p>
           </div>
         </div>
@@ -242,6 +243,435 @@ function BlueprintStudio() {
   );
 }
 
+/* ==========================================
+   Scale Bistro Culinary Experience Sandbox
+   ========================================== */
+function CulinarySandbox() {
+  const [courses, setCourses] = useState(5); // 3 | 5 | 7
+  const [diet, setDiet] = useState('carnivore'); // 'carnivore' | 'pescatarian' | 'plant'
+  const [wineTier, setWineTier] = useState('classic'); // 'none' | 'classic' | 'rare'
+
+  // Pricing calculations
+  const basePrice = courses === 3 ? 4500 : courses === 5 ? 7500 : 11000;
+  const winePrice = wineTier === 'none' ? 0 : wineTier === 'classic' ? 3500 : 8500;
+  const totalPrice = basePrice + winePrice;
+  const duration = courses === 3 ? 90 : courses === 5 ? 140 : 200;
+
+  // Dishes structures
+  const dishes = {
+    carnivore: {
+      appetizer: "Hokkaido scallops seared with double-smoked pancetta, parsnip velvet, and shaved autumn truffle.",
+      soup: "Saffron shellfish bouillon infused with Pernod, roasted baby fennel, and garlic-confit crostini.",
+      midCourse: "Crispy-skinned duck breast with wild cherry reductions, roasted sunchokes, and hazelnut dust.",
+      main: "Dry-aged A5 Miyazaki Wagyu ribeye with marrow reduction, caramelized shallot pureé, and salt-baked fingerlings.",
+      dessert: "Madagascar vanilla bean soufflé with liquid salted-caramel core and 24k gold leaf."
+    },
+    pescatarian: {
+      appetizer: "Citrus-cured wild hamachi with pickled sea fennel, avocado mousse, and white shoyu-yuzu reduction.",
+      soup: "Velvety lobster bisque finished with cognac cream, tarragon oil, and butter-poached claw meat.",
+      midCourse: "Pan-roasted Arctic char with charred asparagus tips, lemon-caper butter, and toasted almond crumble.",
+      main: "Line-caught Chilean sea bass with butter-poached leeks, saffron-infused shellfish reduction, and coastal sea herbs.",
+      dessert: "Grand Marnier citrus tartlet with dark chocolate curls and candied orange zests."
+    },
+    plant: {
+      appetizer: "Heritage beetroot textures with goat cheese cloud, honey-poached figs, and toasted pumpkin seed emulsion.",
+      soup: "Roasted chestnut and forest mushroom cream soup drizzled with cold-pressed truffle oil.",
+      midCourse: "Braised baby artichokes with heritage tomato confit, olive tapenade, and herb-infused focaccia.",
+      main: "Truffle-glazed wild forest mushroom tartlet with roasted sunchokes, watercress velvet, and hazelnut crunch.",
+      dessert: "Single-origin dark chocolate avocado marquise with local raspberry sorbet and crystallized violet petals."
+    }
+  };
+
+  const getWinePairing = () => {
+    if (wineTier === 'none') return "Artisanal mocktail pairings infused with local botanicals.";
+    if (wineTier === 'classic') {
+      if (courses === 3) return "2021 Puligny-Montrachet (Burgundy) & 2019 Chateau Musar (Lebanon)";
+      return "2021 Puligny-Montrachet, 2018 Chateau Palmer (Margaux), & 10-Year Tawny Port.";
+    }
+    // Rare Cellar
+    if (courses === 3) return "2015 Dom Pérignon (Champagne) & 2009 Chateau Mouton Rothschild (Pauillac)";
+    return "1996 Dom Pérignon Oenothèque, 2005 Romanée-Conti La Tâche, & 1977 Taylor Fladgate Vintage Port.";
+  };
+
+  const currentSelection = dishes[diet];
+
+  return (
+    <div className="glass-card p-6 md:p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch border border-[#D9A752]/20 shadow-xl text-[#F5F5F4] bg-[#1C1917]/95">
+      {/* Parameters Panel */}
+      <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+        <div className="space-y-2">
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#D9A752] flex items-center gap-1.5">
+            <Utensils className="w-3.5 h-3.5" /> Michelin Tasting Sandbox
+          </span>
+          <h3 className="text-2xl font-extrabold text-[#F5F5F4]">Curate Your Menu</h3>
+          <p className="text-stone-400 text-xs">Select your course depth, dietary profile, and wine pairing preferences to design a customized culinary itinerary.</p>
+        </div>
+
+        {/* Inputs */}
+        <div className="space-y-4 text-xs font-semibold uppercase tracking-wider text-stone-300">
+          <div className="space-y-2">
+            <span className="text-stone-400">Course Count</span>
+            <div className="flex gap-2 mt-1">
+              {[3, 5, 7].map(num => (
+                <button
+                  key={num}
+                  type="button"
+                  onClick={() => setCourses(num)}
+                  className={`flex-1 py-2 rounded-lg border text-xs font-bold transition-all cursor-pointer ${courses === num ? 'bg-[#D9A752] text-zinc-950 border-[#D9A752]' : 'border-stone-700 hover:border-stone-500 text-stone-300 bg-stone-900/50'}`}
+                >
+                  {num} Courses
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-stone-400">Gastronomic Path</span>
+            <div className="flex gap-2 mt-1">
+              {[
+                { id: 'carnivore', label: 'Carnivore' },
+                { id: 'pescatarian', label: 'Pescatarian' },
+                { id: 'plant', label: 'Plant-Based' }
+              ].map(d => (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => setDiet(d.id)}
+                  className={`flex-1 py-2 rounded-lg border text-[10px] font-bold uppercase transition-all cursor-pointer ${diet === d.id ? 'bg-[#D9A752] text-zinc-950 border-[#D9A752]' : 'border-stone-700 hover:border-stone-500 text-stone-300 bg-stone-900/50'}`}
+                >
+                  {d.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <span className="text-stone-400">Wine Pairings Tiers</span>
+            <div className="flex gap-2 mt-1">
+              {[
+                { id: 'none', label: 'No Pairing' },
+                { id: 'classic', label: 'Classic Sommelier' },
+                { id: 'rare', label: 'Rare Cellar' }
+              ].map(w => (
+                <button
+                  key={w.id}
+                  type="button"
+                  onClick={() => setWineTier(w.id)}
+                  className={`flex-1 py-2 rounded-lg border text-[10px] font-bold uppercase transition-all cursor-pointer ${wineTier === w.id ? 'bg-[#D9A752] text-zinc-950 border-[#D9A752]' : 'border-stone-700 hover:border-stone-500 text-stone-300 bg-stone-900/50'}`}
+                >
+                  {w.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Live calculated feedback */}
+        <div className="grid grid-cols-2 gap-4 border-t border-stone-800 pt-4">
+          <div>
+            <p className="text-[10px] uppercase font-bold text-stone-500">Price per Guest</p>
+            <p className="font-metrics font-extrabold text-lg text-[#D9A752]">₹{totalPrice.toLocaleString()}</p>
+          </div>
+          <div>
+            <p className="text-[10px] uppercase font-bold text-stone-500">Est. Duration</p>
+            <p className="font-metrics font-extrabold text-lg text-[#F5F5F4] flex items-center gap-1.5"><Clock className="w-4 h-4 text-stone-400" /> {duration} Mins</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Live Menu display */}
+      <div className="lg:col-span-7 bg-[#12100E] border border-stone-850 p-6 md:p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden shadow-inner">
+        {/* Artistic overlay */}
+        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-radial from-[#D9A752]/5 to-transparent"></div>
+
+        <div className="space-y-6 text-center max-w-lg mx-auto py-4">
+          <span className="font-serif italic text-xs text-[#D9A752] tracking-widest">Le Menu Configuré</span>
+          
+          <div className="space-y-4 divide-y divide-stone-900 text-stone-300">
+            {/* Appetizer */}
+            <div className="pt-0">
+              <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block">I. L'Entrée</span>
+              <p className="font-serif text-sm italic mt-1 leading-relaxed">{currentSelection.appetizer}</p>
+            </div>
+
+            {/* Soup (5 & 7 Courses) */}
+            {courses >= 5 && (
+              <div className="pt-4">
+                <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block">II. Le Potage</span>
+                <p className="font-serif text-sm italic mt-1 leading-relaxed">{currentSelection.soup}</p>
+              </div>
+            )}
+
+            {/* Mid Course (7 Courses) */}
+            {courses === 7 && (
+              <div className="pt-4">
+                <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block">III. L'Intermédiaire</span>
+                <p className="font-serif text-sm italic mt-1 leading-relaxed">{currentSelection.midCourse}</p>
+              </div>
+            )}
+
+            {/* Main Course */}
+            <div className="pt-4">
+              <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block">{courses === 3 ? "II." : courses === 5 ? "III." : "IV."} Le Plat Principal</span>
+              <p className="font-serif text-sm italic mt-1 leading-relaxed text-[#F5F5F4]">{currentSelection.main}</p>
+            </div>
+
+            {/* Dessert */}
+            <div className="pt-4">
+              <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block">{courses === 3 ? "III." : courses === 5 ? "IV." : "V."} Le Dessert</span>
+              <p className="font-serif text-sm italic mt-1 leading-relaxed">{currentSelection.dessert}</p>
+            </div>
+
+            {/* Wine Pairing Description */}
+            <div className="pt-4 border-t border-dashed border-[#D9A752]/20">
+              <span className="text-[9px] uppercase font-extrabold text-[#D9A752] tracking-widest block flex items-center justify-center gap-1"><Wine className="w-3 h-3" /> Accompagnement de Vins</span>
+              <p className="text-xs mt-1 text-[#D9A752]">{getWinePairing()}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center text-[8px] font-bold text-stone-500 tracking-widest font-metrics border-t border-stone-900 pt-3">
+          SCALE BISTRO // CHEF DE CUISINE
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   Scale Bistro Interactive Dining Room
+   ========================================== */
+function InteractiveTablePlanner() {
+  const [selectedTable, setSelectedTable] = useState(null);
+  const [guestCount, setGuestCount] = useState(2);
+  const [date, setDate] = useState('2026-06-23');
+  const [time, setTime] = useState('19:00');
+  const [booked, setBooked] = useState(false);
+  const [tableStatus, setTableStatus] = useState({
+    1: 'available',
+    2: 'reserved',
+    3: 'available',
+    4: 'available',
+    5: 'available',
+    6: 'available'
+  });
+
+  const tables = [
+    { id: 1, cx: 100, cy: 90, r: 24, capacity: 2, label: "Table 1 (2 Guests)" },
+    { id: 2, cx: 300, cy: 90, r: 24, capacity: 2, label: "Table 2 (2 Guests)" },
+    { id: 3, cx: 100, cy: 210, r: 32, capacity: 4, label: "Table 3 (4 Guests - Garden View)" },
+    { id: 4, cx: 300, cy: 210, r: 32, capacity: 4, label: "Table 4 (4 Guests - Hearthside)" },
+    { id: 5, cx: 200, cy: 150, r: 40, capacity: 6, label: "Table 5 (6 Guests - Chef's Board)" },
+    { id: 6, cx: 200, cy: 60, r: 20, capacity: 2, label: "Table 6 (Bar Alcove)" }
+  ];
+
+  const handleTableClick = (t) => {
+    if (tableStatus[t.id] === 'reserved') return;
+    setSelectedTable(t);
+    setGuestCount(Math.min(t.capacity, guestCount));
+  };
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    if (!selectedTable) return;
+    
+    // Simulate booking update
+    setTableStatus(prev => ({
+      ...prev,
+      [selectedTable.id]: 'reserved'
+    }));
+    setBooked(true);
+    setTimeout(() => {
+      setBooked(false);
+      setSelectedTable(null);
+    }, 4000);
+  };
+
+  return (
+    <div className="glass-card p-6 md:p-8 rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border border-[#D9A752]/20 shadow-xl text-[#F5F5F4] bg-[#1C1917]/95">
+      {/* Table SVG Map Panel */}
+      <div className="lg:col-span-7 bg-[#0C0A09] border border-stone-850 p-6 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-inner">
+        <div className="absolute top-3 left-4 text-[10px] font-bold text-stone-500 tracking-wider font-metrics">
+          INTERACTIVE DINING ROOM MAP
+        </div>
+        
+        {/* Drafting Grid Background */}
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'radial-gradient(#D9A752 1px, transparent 1px)', 
+          backgroundSize: '24px 24px',
+          opacity: 0.05
+        }}></div>
+
+        <svg viewBox="0 0 400 300" className="w-full h-auto max-w-[380px] z-10 text-stone-300 mt-4">
+          {/* Wall guides / Hearth overlay */}
+          <path d="M 20 20 L 380 20 L 380 280 L 20 280 Z" fill="none" stroke="rgba(217, 167, 82, 0.15)" strokeWidth="1" />
+          
+          {/* Fireplace (Hearthside) */}
+          <rect x="375" y="170" width="5" height="80" fill="#8C1D2A" opacity="0.8" />
+          <text x="368" y="215" fill="#8C1D2A" fontSize="7" fontWeight="bold" textAnchor="middle" transform="rotate(-90 368 215)">HEARTH</text>
+
+          {/* Bar Counter (Top) */}
+          <rect x="120" y="15" width="160" height="15" fill="#1C1917" stroke="rgba(217, 167, 82, 0.25)" strokeWidth="1" />
+          <text x="200" y="25" fill="#D9A752" fontSize="7" fontWeight="bold" textAnchor="middle" letterSpacing="1">BAR ALCOVE</text>
+
+          {/* Render Tables */}
+          {tables.map(t => {
+            const status = tableStatus[t.id];
+            const isSelected = selectedTable?.id === t.id;
+            
+            // Color configuration
+            let fillColor = "rgba(41, 37, 36, 0.4)";
+            let strokeColor = "rgba(217, 167, 82, 0.3)";
+            
+            if (status === 'reserved') {
+              fillColor = "rgba(140, 29, 42, 0.25)";
+              strokeColor = "#8C1D2A";
+            } else if (isSelected) {
+              fillColor = "rgba(217, 167, 82, 0.15)";
+              strokeColor = "#D9A752";
+            }
+
+            return (
+              <g 
+                key={t.id} 
+                onClick={() => handleTableClick(t)} 
+                className={`cursor-pointer transition-all duration-300 group`}
+              >
+                {/* Visual seats representation */}
+                {Array.from({ length: t.capacity }).map((_, sIdx) => {
+                  const angle = (sIdx * 360) / t.capacity;
+                  const seatRad = 5;
+                  const dist = t.r + 6;
+                  const sx = t.cx + dist * Math.cos((angle * Math.PI) / 180);
+                  const sy = t.cy + dist * Math.sin((angle * Math.PI) / 180);
+
+                  return (
+                    <circle 
+                      key={sIdx} 
+                      cx={sx} 
+                      cy={sy} 
+                      r={seatRad} 
+                      fill={status === 'reserved' ? '#8C1D2A' : isSelected ? '#D9A752' : '#292524'} 
+                      stroke="rgba(217, 167, 82, 0.15)"
+                      strokeWidth="0.5"
+                    />
+                  );
+                })}
+
+                {/* Main Table circle */}
+                <circle 
+                  cx={t.cx} 
+                  cy={t.cy} 
+                  r={t.r} 
+                  fill={fillColor} 
+                  stroke={strokeColor} 
+                  strokeWidth={isSelected ? "2.5" : "1.5"}
+                />
+                
+                {/* Table Label */}
+                <text 
+                  x={t.cx} 
+                  y={t.cy + 3} 
+                  fill={status === 'reserved' ? '#8C1D2A' : isSelected ? '#D9A752' : '#F5F5F4'} 
+                  fontSize="7" 
+                  fontWeight="extrabold" 
+                  textAnchor="middle"
+                >
+                  T{t.id}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+
+        {/* Legend */}
+        <div className="flex gap-4 mt-2 text-[8px] uppercase font-bold text-stone-500 tracking-wider">
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full border border-stone-700 bg-stone-900/50"></span> Available
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full border border-[#D9A752] bg-[#D9A752]/20"></span> Selected
+          </div>
+          <div className="flex items-center gap-1">
+            <span className="w-2.5 h-2.5 rounded-full border border-[#8C1D2A] bg-[#8C1D2A]/20"></span> Reserved
+          </div>
+        </div>
+      </div>
+
+      {/* Reservation Details & Form */}
+      <div className="lg:col-span-5 space-y-6">
+        <div>
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#D9A752]">Confidential Reservation</span>
+          <h3 className="text-2xl font-extrabold text-[#F5F5F4] mt-1">Reserve a Table</h3>
+          <p className="text-stone-400 text-xs mt-1">Select a table on the floor plan map to customize your seating placement.</p>
+        </div>
+
+        {booked ? (
+          <div className="text-center p-8 bg-emerald-950/20 border border-emerald-800/40 rounded-2xl space-y-2 text-emerald-400">
+            <CheckCircle className="w-12 h-12 text-emerald-500 mx-auto animate-bounce" />
+            <h4 className="text-base font-bold">Booking Authenticated</h4>
+            <p className="text-xs text-stone-400">Table {selectedTable.id} is locked for your tasting session on {date} at {time}.</p>
+          </div>
+        ) : selectedTable ? (
+          <form onSubmit={handleBookingSubmit} className="space-y-4 text-xs uppercase tracking-wider text-stone-300 font-semibold">
+            {/* Table Details */}
+            <div className="p-4 rounded-xl border border-stone-800 bg-[#0C0A09]/60 space-y-1">
+              <span className="text-[8px] font-bold text-stone-500 block">Selected Placement</span>
+              <p className="text-sm font-extrabold text-[#D9A752] font-serif italic normal-case">{selectedTable.label}</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="text-[9px] font-bold text-stone-400">Date</label>
+                <input 
+                  type="date" required 
+                  value={date} 
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full p-2.5 rounded-lg border border-stone-850 bg-stone-900 text-stone-200 outline-none focus:border-[#D9A752] text-xs transition-colors"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-[9px] font-bold text-stone-400">Time</label>
+                <input 
+                  type="time" required 
+                  value={time} 
+                  onChange={(e) => setTime(e.target.value)}
+                  className="w-full p-2.5 rounded-lg border border-stone-850 bg-stone-900 text-stone-200 outline-none focus:border-[#D9A752] text-xs transition-colors"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-[9px] font-bold text-stone-400">Guest Count</label>
+              <select
+                value={guestCount}
+                onChange={(e) => setGuestCount(parseInt(e.target.value))}
+                className="w-full p-2.5 rounded-lg border border-stone-850 bg-stone-900 text-stone-200 outline-none focus:border-[#D9A752] text-xs transition-colors"
+              >
+                {Array.from({ length: selectedTable.capacity }).map((_, idx) => (
+                  <option key={idx+1} value={idx+1}>{idx+1} {idx+1 > 1 ? 'Guests' : 'Guest'}</option>
+                ))}
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-gradient-brand text-zinc-950 hover:bg-[#D9A752] font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] border-none"
+            >
+              Lock Table {selectedTable.id} <Check className="w-4 h-4" />
+            </button>
+          </form>
+        ) : (
+          <div className="text-center p-8 border border-dashed border-stone-800 rounded-2xl text-stone-500">
+            <Users className="w-8 h-8 mx-auto text-stone-700 animate-pulse-subtle" />
+            <p className="text-xs mt-3">Select a table on the visual map to start the reservation workflow.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Home({ siteMode }) {
   const [contactForm, setContactForm] = useState({ name: '', email: '', message: '', type: 'Residential' });
   const [submitted, setSubmitted] = useState(false);
@@ -295,6 +725,213 @@ export default function Home({ siteMode }) {
   ];
 
   /* ==========================================
+     RENDER C: Scale Bistro (Restaurant Theme)
+     ========================================== */
+  if (siteMode === 'restaurant') {
+    return (
+      <div className="min-h-screen bg-[#0C0A09] text-[#F5F5F4] font-sans transition-colors duration-500 overflow-x-hidden pt-6">
+        {/* HERO SECTION */}
+        <section id="home" className="relative pt-12 pb-24 md:py-32 px-6 flex items-center justify-center min-h-[85vh]">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            {/* Left Content */}
+            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/80 border border-stone-800 text-[#D9A752] text-xs font-bold uppercase tracking-widest">
+                <Utensils className="w-3.5 h-3.5 text-[#D9A752]" /> Scale Bistro
+              </div>
+              
+              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.08] font-display">
+                Choreographing Flavor <br />
+                <span className="text-[#D9A752] font-serif font-light italic">& Elegance.</span>
+              </h1>
+              
+              <p className="text-stone-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                A Michelin-starred culinary journey combining modern gastronomy, rare historical vintages, and a refined architectural dining room.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a 
+                  href="#reserve" 
+                  className="px-6 py-3.5 rounded-xl bg-gradient-brand text-zinc-950 font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-[0.98]"
+                >
+                  Reserve Table <Calendar className="w-4 h-4" />
+                </a>
+                <a 
+                  href="#tasting" 
+                  className="px-6 py-3.5 rounded-xl border border-stone-800 hover:border-[#D9A752] font-bold text-sm text-stone-300 hover:text-[#D9A752] transition-all flex items-center justify-center gap-2 cursor-pointer bg-[#1C1917]/50"
+                >
+                  Configure Tasting Menu
+                </a>
+              </div>
+            </div>
+
+            {/* Right Showcase Image */}
+            <div className="lg:col-span-5 relative flex justify-center items-center font-serif">
+              <div className="w-72 h-72 rounded-full bg-[#8C1D2A]/10 absolute -top-8 filter blur-3xl"></div>
+              
+              <div className="w-full max-w-[420px] relative animate-float">
+                <div className="relative rounded-2xl overflow-hidden border border-stone-800 shadow-2xl bg-[#1C1917] p-2">
+                  <img 
+                    src="https://images.unsplash.com/photo-1544025162-d76694265947" 
+                    alt="Scale Bistro Gourmet Dish" 
+                    className="w-full h-auto object-cover rounded-xl"
+                  />
+                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass border border-[#D9A752]/20 shadow-md">
+                    <p className="text-[10px] uppercase font-bold text-[#D9A752] tracking-widest font-sans">Seasonal Selection</p>
+                    <p className="font-display font-extrabold text-sm text-white mt-0.5 italic">Seared Scallops with Autumn Truffle</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURED MENU GRID */}
+        <section id="menu" className="py-24 px-6 border-t border-stone-900 bg-[#12100E]">
+          <div className="max-w-7xl mx-auto space-y-16">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Signature Offerings</h2>
+              <p className="text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+                A selection of modern gastronomic compositions reflecting seasonal botanicals and pristine organic farming.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "A5 Miyazaki Wagyu",
+                  price: "₹8,500",
+                  img: "https://images.unsplash.com/photo-1544025162-d76694265947",
+                  desc: "Dry-aged Wagyu ribeye cooked over charcoal, bone marrow reduction, caramelized sunchokes, and truffle velvet."
+                },
+                {
+                  title: "Wild Hamachi Crudo",
+                  price: "₹3,400",
+                  img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c",
+                  desc: "Citrus-cured yellowtail crudo, sea fennel, pickled sea grape, cold-pressed avocado oil, and white shoyu yuzu nectar."
+                },
+                {
+                  title: "Truffled Forest Tartlet",
+                  price: "₹2,900",
+                  img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3",
+                  desc: "Caramelized wild mushrooms in puff pastry shell, roasted baby sunchokes, watercress foam, and hazelnut crumb."
+                }
+              ].map((menuItem, idx) => (
+                <div key={idx} className="glass-card rounded-2xl overflow-hidden flex flex-col justify-between border border-stone-850 shadow-md bg-[#1C1917]/30 hover:-translate-y-1 transition-all duration-300">
+                  <div>
+                    <div className="h-48 overflow-hidden relative">
+                      <img src={menuItem.img} alt={menuItem.title} className="w-full h-full object-cover hover:scale-105 transition-all duration-500" />
+                      <div className="absolute top-4 right-4 bg-zinc-950/90 text-[#D9A752] text-xs font-bold px-3 py-1 rounded-md">
+                        {menuItem.price}
+                      </div>
+                    </div>
+                    <div className="p-6 space-y-2">
+                      <h3 className="text-lg font-bold text-white">{menuItem.title}</h3>
+                      <p className="text-stone-400 text-xs leading-relaxed">{menuItem.desc}</p>
+                    </div>
+                  </div>
+                  <div className="p-6 pt-0">
+                    <span className="text-xs font-bold text-[#D9A752] hover:text-white cursor-pointer flex items-center gap-1">
+                      Explore Wine Pairing &rarr;
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* TASTING SANDBOX SECTION */}
+        <section id="tasting" className="py-24 px-6 border-t border-stone-900">
+          <div className="max-w-7xl mx-auto space-y-16">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Culinary Builder</h2>
+              <p className="text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+                Use our interactive menu sandbox to plan your course progression and somatic pairings.
+              </p>
+            </div>
+            
+            <CulinarySandbox />
+          </div>
+        </section>
+
+        {/* RESERVATIONS TABLE PLANNER */}
+        <section id="reserve" className="py-24 px-6 border-t border-stone-900 bg-[#12100E]">
+          <div className="max-w-7xl mx-auto space-y-16">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Dining Reservations</h2>
+              <p className="text-stone-400 max-w-xl mx-auto text-sm sm:text-base">
+                Interact with our physical floor plan layout to choose your preferred dining room location.
+              </p>
+            </div>
+            
+            <InteractiveTablePlanner />
+          </div>
+        </section>
+
+        {/* BRAND VALUES / PHILOSOPHY */}
+        <section id="philosophy" className="py-24 px-6 border-t border-stone-900 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#D9A752]">Culinary Philosophy</span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Precision on the Palette</h2>
+                
+                <div className="space-y-6">
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#8C1D2A]/10 border border-[#8C1D2A]/30 flex items-center justify-center text-[#D9A752] shrink-0">
+                      <Utensils className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-bold text-white">1. Gastronomic Minimalism</h4>
+                      <p className="text-stone-400 text-xs mt-1 leading-relaxed">Highlighting 2 to 3 main seasonal ingredients in each plate, amplifying raw tastes without unnecessary clutter.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#8C1D2A]/10 border border-[#8C1D2A]/30 flex items-center justify-center text-[#D9A752] shrink-0">
+                      <Wine className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-bold text-white">2. Cellar Curation</h4>
+                      <p className="text-stone-400 text-xs mt-1 leading-relaxed">Pairing classic and ultra-rare vintage wines directly matching the molecular density of the course compositions.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#8C1D2A]/10 border border-[#8C1D2A]/30 flex items-center justify-center text-[#D9A752] shrink-0">
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-base font-bold text-white">3. Integrity of Origin</h4>
+                      <p className="text-stone-400 text-xs mt-1 leading-relaxed">Sourcing exclusively from biodynamic local farms and clean oceans with zero additives and full supply transparency.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Editorial block quote */}
+              <div className="p-8 md:p-12 bg-[#1C1917] text-[#F5F5F4] border border-stone-850 rounded-3xl relative flex flex-col justify-between h-[360px] shadow-lg">
+                <Quote className="w-12 h-12 text-[#D9A752] opacity-60 absolute top-8 left-8" />
+                <div className="mt-12 relative z-10">
+                  <p className="text-xl sm:text-2xl font-display font-light italic leading-relaxed text-stone-250">
+                    "Scale Bistro elevates simple ingredients into culinary poetry. Every plate challenges and delights the senses with geometric precision."
+                  </p>
+                </div>
+                <div className="border-t border-stone-800 pt-6 mt-6 flex justify-between items-center">
+                  <div>
+                    <p className="font-extrabold text-sm text-[#D9A752]">Marc Veyrat</p>
+                    <p className="text-stone-500 text-[10px] uppercase font-bold tracking-wider">Michelin Guide Inspector</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  /* ==========================================
      RENDER B: Scale Studio (Architecture Theme)
      ========================================== */
   if (siteMode === 'architecture') {
@@ -314,7 +951,7 @@ export default function Home({ siteMode }) {
                 <span className="text-[#C2A478] font-light">Future.</span>
               </h1>
               
-              <p className="text-zinc-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              <p className="text-zinc-650 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 We synthesize space, light, materials, and gravity to craft architectural masterpieces that stand for generations and represent the peak of minimalist design.
               </p>
               
@@ -327,7 +964,7 @@ export default function Home({ siteMode }) {
                 </a>
                 <a 
                   href="#projects" 
-                  className="px-6 py-3.5 rounded-xl border border-zinc-350 hover:border-zinc-800 font-bold text-sm text-zinc-700 hover:text-zinc-900 transition-all flex items-center justify-center gap-2 cursor-pointer bg-white/50"
+                  className="px-6 py-3.5 rounded-xl border border-zinc-350 hover:border-zinc-800 font-bold text-sm text-zinc-705 hover:text-zinc-900 transition-all flex items-center justify-center gap-2 cursor-pointer bg-white/50"
                 >
                   Explore Projects
                 </a>
@@ -346,7 +983,7 @@ export default function Home({ siteMode }) {
                     className="w-full h-auto object-cover rounded-xl"
                   />
                   <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass border border-white/20 shadow-md">
-                    <p className="text-[10px] uppercase font-bold text-[#C2A478] tracking-widest">Featured Concept</p>
+                    <p className="text-[10px] uppercase font-bold text-[#C2A478] tracking-widest font-sans">Featured Concept</p>
                     <p className="font-display font-extrabold text-sm text-zinc-900 mt-0.5">The Travertine Oasis (Malibu)</p>
                   </div>
                 </div>
@@ -439,7 +1076,7 @@ export default function Home({ siteMode }) {
                     </div>
                     <div>
                       <h4 className="text-base font-bold text-zinc-900">1. Minimalism</h4>
-                      <p className="text-zinc-600 text-xs mt-1 leading-relaxed">Stripping away the superfluous to amplify structure, natural material authenticity, and light paths.</p>
+                      <p className="text-zinc-605 text-xs mt-1 leading-relaxed">Stripping away the superfluous to amplify structure, natural material authenticity, and light paths.</p>
                     </div>
                   </div>
 
@@ -449,7 +1086,7 @@ export default function Home({ siteMode }) {
                     </div>
                     <div>
                       <h4 className="text-base font-bold text-zinc-900">2. Innovation</h4>
-                      <p className="text-zinc-600 text-xs mt-1 leading-relaxed">Using advanced structural calculations and ecological designs to build homes that are thermally sound and carbon efficient.</p>
+                      <p className="text-zinc-655 text-xs mt-1 leading-relaxed">Using advanced structural calculations and ecological designs to build homes that are thermally sound and carbon efficient.</p>
                     </div>
                   </div>
 
@@ -459,7 +1096,7 @@ export default function Home({ siteMode }) {
                     </div>
                     <div>
                       <h4 className="text-base font-bold text-zinc-900">3. Reliability</h4>
-                      <p className="text-zinc-600 text-xs mt-1 leading-relaxed">Providing absolute architectural project oversight, material engineering safety, and structural longevity that spans centuries.</p>
+                      <p className="text-zinc-655 text-xs mt-1 leading-relaxed">Providing absolute architectural project oversight, material engineering safety, and structural longevity that spans centuries.</p>
                     </div>
                   </div>
                 </div>
