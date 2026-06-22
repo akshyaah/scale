@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.js.dev/config/
 export default defineConfig({
+  base: '/scale/',
   plugins: [react()],
   server: {
     port: 3000,
