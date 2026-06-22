@@ -35,7 +35,7 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className={`flex flex-col min-h-screen bg-dark-900 text-slate-100 font-sans bg-gradient-mesh transition-colors duration-500 ${siteMode === 'architecture' ? 'theme-architecture text-zinc-900' : ''}`}>
+    <div className="flex flex-col min-h-screen bg-dark-900 text-slate-100 font-sans bg-gradient-mesh transition-colors duration-500">
       
       {/* Navigation Bar */}
       <nav className="glass fixed top-0 w-full z-50 border-b border-dark-700/55">
@@ -56,72 +56,35 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-6 text-xs font-semibold uppercase tracking-wider">
-            {siteMode === 'architecture' ? (
-              <>
-                <a href="#projects" className="text-zinc-700 hover:text-amber-805 transition-colors font-medium">Projects</a>
-                <a href="#configurator" className="text-zinc-700 hover:text-amber-805 transition-colors font-medium">Blueprint Studio</a>
-                <a href="#philosophy" className="text-zinc-700 hover:text-amber-805 transition-colors font-medium">Philosophy</a>
-                <a href="#contact" className="text-zinc-700 hover:text-amber-805 transition-colors font-medium">Inquire</a>
-              </>
-            ) : (
-              <>
-                <Link to="/opportunities" className="text-slate-300 hover:text-brand-400 transition-colors">Opportunities</Link>
-                <Link to="/analyzer" className="text-slate-300 hover:text-brand-400 transition-colors">Idea Analyzer</Link>
-                <Link to="/planner" className="text-slate-300 hover:text-brand-400 transition-colors">Financial Planner</Link>
-                <Link to="/optimizer" className="text-slate-300 hover:text-brand-400 transition-colors">Resource Optimizer</Link>
-                <Link to="/insights" className="text-slate-300 hover:text-brand-400 transition-colors">Market Insights</Link>
-              </>
-            )}
+            <Link to="/opportunities" className="text-slate-300 hover:text-brand-400 transition-colors">Opportunities</Link>
+            <Link to="/analyzer" className="text-slate-300 hover:text-brand-400 transition-colors">Idea Analyzer</Link>
+            <Link to="/planner" className="text-slate-300 hover:text-brand-400 transition-colors">Financial Planner</Link>
+            <Link to="/optimizer" className="text-slate-300 hover:text-brand-400 transition-colors">Resource Optimizer</Link>
+            <Link to="/insights" className="text-slate-300 hover:text-brand-400 transition-colors">Market Insights</Link>
             
             {isAuthenticated && (
               <span className="h-4 w-[1px] bg-dark-700"></span>
             )}
 
             {isAuthenticated && (
-              <>
-                <Link to="/admin/dashboard" className={`transition-colors flex items-center gap-1 ${siteMode === 'architecture' ? 'text-zinc-700 hover:text-zinc-950' : 'text-slate-300 hover:text-brand-400'}`}>
-                  <LayoutDashboard className="w-3.5 h-3.5" />
-                  Dashboard
-                </Link>
-              </>
+              <Link to="/admin/dashboard" className="transition-colors flex items-center gap-1 text-slate-300 hover:text-brand-400">
+                <LayoutDashboard className="w-3.5 h-3.5" />
+                Dashboard
+              </Link>
             )}
           </div>
 
           {/* Right side controls */}
           <div className="hidden lg:flex items-center gap-4">
             {/* Mode Switcher */}
-            <div className={`flex p-0.5 rounded-full border transition-all duration-300 ${siteMode === 'architecture' ? 'bg-zinc-200 border-zinc-350' : 'bg-dark-950/60 border-dark-700/50'}`}>
-              <button
-                onClick={() => handleModeChange('startup')}
-                className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  siteMode === 'startup' 
-                    ? 'bg-gradient-brand text-white shadow-sm' 
-                    : 'text-zinc-500 hover:text-zinc-800'
-                }`}
-              >
-                Scale AI
-              </button>
-              <button
-                onClick={() => handleModeChange('architecture')}
-                className={`px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider transition-all duration-300 cursor-pointer ${
-                  siteMode === 'architecture' 
-                    ? 'bg-zinc-900 text-white shadow-sm' 
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                Scale Studio
-              </button>
-            </div>
-
             {isAuthenticated ? (
               <div className="flex items-center gap-3">
-                <span className={`text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border ${siteMode === 'architecture' ? 'text-zinc-800 bg-zinc-200/80 border-zinc-300' : 'text-slate-400 bg-dark-800 border-dark-700'}`}>
+                <span className="text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider border text-slate-400 bg-dark-800 border-dark-700">
                   Pilot: <span className="font-extrabold">{admin?.name}</span>
                 </span>
                 <button 
                   onClick={handleLogout}
-                  className={`px-3.5 py-1.5 rounded-lg border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${siteMode === 'architecture' ? 'border-zinc-300 hover:border-rose-600/40 hover:bg-rose-50/50 text-zinc-600 hover:text-rose-700' : 'border-dark-700 hover:border-rose-500/35 hover:bg-rose-500/10 text-slate-400 hover:text-rose-450'}`}
-                >
+                  className="px-3.5 py-1.5 rounded-lg border text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer border-dark-700 hover:border-rose-500/35 hover:bg-rose-500/10 text-slate-400 hover:text-rose-450">
                   <LogOut className="w-3.5 h-3.5" />
                   Sign Out
                 </button>
@@ -129,8 +92,7 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
             ) : (
               <Link 
                 to="/admin/login" 
-                className={`px-4 py-2 rounded-lg border text-xs font-bold transition-all flex items-center gap-1.5 ${siteMode === 'architecture' ? 'border-zinc-300 hover:border-zinc-900 text-zinc-700 hover:text-zinc-900' : 'border-dark-700 hover:border-slate-600 text-slate-400 hover:text-white'}`}
-              >
+                className="px-4 py-2 rounded-lg border text-xs font-bold transition-all flex items-center gap-1.5 border-dark-700 hover:border-slate-600 text-slate-400 hover:text-white">
                 <Shield className="w-3.5 h-3.5" />
                 Co-Founder Login
               </Link>
@@ -140,7 +102,7 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => window.toggleMobileMenu()}
-            className={`lg:hidden p-2 transition-colors ${siteMode === 'architecture' ? 'text-zinc-800 hover:text-zinc-950' : 'text-slate-400 hover:text-white'}`}
+            className="lg:hidden p-2 text-slate-400 hover:text-white transition-colors"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -154,13 +116,13 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
 
       {/* Footer */}
       {!isAdminRoute && (
-        <footer className={`border-t py-12 px-6 shrink-0 z-10 transition-colors duration-500 ${siteMode === 'architecture' ? 'bg-zinc-100 border-zinc-200 text-zinc-800' : 'bg-dark-955 border-dark-700/60 text-slate-400'}`}>
+        <footer className="border-t py-12 px-6 shrink-0 z-10 transition-colors duration-500 bg-dark-955 border-dark-700/60 text-slate-400">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 font-display text-sm font-bold tracking-tight">
-              <div className={`w-6 h-6 rounded flex items-center justify-center text-white text-[10px] ${siteMode === 'architecture' ? 'bg-zinc-900' : 'bg-brand-500 rotate-45'}`}>
-                {siteMode === 'architecture' ? 'S' : <Rocket className="w-3.5 h-3.5" />}
+              <div className="w-6 h-6 rounded flex items-center justify-center text-white text-[10px] bg-brand-500 rotate-45">
+                <Rocket className="w-3.5 h-3.5" />
               </div>
-              <span>SCALE {siteMode === 'architecture' ? 'STUDIO' : 'AI'}</span>
+              <span>SCALE AI</span>
             </div>
             <div className={`flex items-center gap-6 text-xs font-medium ${siteMode === 'architecture' ? 'text-zinc-500' : 'text-slate-450'}`}>
               <span>&copy; {new Date().getFullYear()} Scale {siteMode === 'architecture' ? 'Studio' : 'AI'}. All rights reserved.</span>
@@ -171,7 +133,7 @@ function MainLayoutWrapper({ children, isAuthenticated, admin, handleLogout, sit
       )}
 
       {/* Floating chatbot on public pages */}
-      {!isAdminRoute && siteMode !== 'architecture' && <CoFounderChat />}
+      {!isAdminRoute && <CoFounderChat />}
     </div>
   );
 }
@@ -181,11 +143,10 @@ export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const [siteMode, setSiteMode] = useState(localStorage.getItem('siteMode') || 'startup');
+  const [siteMode, setSiteMode] = useState('startup');
 
   const handleModeChange = (mode) => {
     setSiteMode(mode);
-    localStorage.setItem('siteMode', mode);
   };
 
   useEffect(() => {
@@ -262,57 +223,15 @@ export default function App() {
               </button>
             </div>
 
-            {/* Mobile Mode Switcher */}
-            <div className={`flex p-0.5 rounded-full border mb-6 transition-all duration-350 ${siteMode === 'architecture' ? 'bg-zinc-200 border-zinc-300' : 'bg-dark-950/60 border-dark-700/50'}`}>
-              <button
-                onClick={() => {
-                  handleModeChange('startup');
-                  setMobileMenuOpen(false);
-                }}
-                className={`flex-1 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 ${
-                  siteMode === 'startup' 
-                    ? 'bg-gradient-brand text-white shadow-sm' 
-                    : 'text-zinc-500 hover:text-zinc-800'
-                }`}
-              >
-                Scale AI
-              </button>
-              <button
-                onClick={() => {
-                  handleModeChange('architecture');
-                  setMobileMenuOpen(false);
-                }}
-                className={`flex-1 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-center transition-all duration-300 ${
-                  siteMode === 'architecture' 
-                    ? 'bg-zinc-900 text-white shadow-sm' 
-                    : 'text-slate-450 hover:text-white'
-                }`}
-              >
-                Scale Studio
-              </button>
-            </div>
-
             <div className="flex flex-col gap-5 text-base font-semibold uppercase tracking-wider text-slate-300">
-              {siteMode === 'architecture' ? (
-                <>
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-zinc-805 hover:text-amber-800 transition-colors">Home</Link>
-                  <a href="#projects" onClick={() => setMobileMenuOpen(false)} className="text-zinc-805 hover:text-amber-800 transition-colors">Projects</a>
-                  <a href="#configurator" onClick={() => setMobileMenuOpen(false)} className="text-zinc-805 hover:text-amber-800 transition-colors">Blueprint Studio</a>
-                  <a href="#philosophy" onClick={() => setMobileMenuOpen(false)} className="text-zinc-805 hover:text-amber-800 transition-colors">Philosophy</a>
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="text-zinc-805 hover:text-amber-800 transition-colors">Inquire</a>
-                </>
-              ) : (
-                <>
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Home</Link>
-                  <Link to="/opportunities" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Opportunities</Link>
-                  <Link to="/analyzer" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Idea Analyzer</Link>
-                  <Link to="/planner" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Financial Planner</Link>
-                  <Link to="/optimizer" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Resource Optimizer</Link>
-                  <Link to="/insights" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Market Insights</Link>
-                </>
-              )}
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Home</Link>
+              <Link to="/opportunities" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Opportunities</Link>
+              <Link to="/analyzer" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Idea Analyzer</Link>
+              <Link to="/planner" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Financial Planner</Link>
+              <Link to="/optimizer" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Resource Optimizer</Link>
+              <Link to="/insights" onClick={() => setMobileMenuOpen(false)} className="hover:text-white transition-colors">Market Insights</Link>
               
-              <hr className={`my-2 ${siteMode === 'architecture' ? 'border-zinc-300' : 'border-dark-700/60'}`} />
+              <hr className="my-2 border-dark-700/60" />
 
               {isAuthenticated ? (
                 <>
